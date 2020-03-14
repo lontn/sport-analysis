@@ -5,12 +5,12 @@ pipeline {
     }
 
     stages {
-        stage('checkout') {
-            steps {
-                echo 'checkout from gi'
-                git url: 'https://github.com/lontn/sport-analysis', branch: 'master'
-            }
-        }
+        //stage('checkout') {
+            //steps {
+                //echo 'checkout from gi'
+                //git url: 'https://github.com/lontn/sport-analysis', branch: 'master'
+            //}
+        //}
         stage('Build') {
             steps {
                 //sh "mvn clean package sport-analysis:repackage"
