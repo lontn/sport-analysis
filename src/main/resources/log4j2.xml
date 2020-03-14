@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- local version -->
+<Configuration status="info" monitorInterval="30">
+  <Appenders>
+    <!-- ***************************** -->
+    <!-- ALL                           -->
+    <!-- ***************************** -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout charset="utf-8" pattern="%d %p %c{1} [%t] %m%n" />
+    </Console>
+    <RollingRandomAccessFile name="SportAnalysis" fileName="logs/sport-analysis.log" filePattern="logs/$${date:yyyy-MM}/sport-analysis-%d{yyyy-MM-dd_HH}-%i.log.gz">
+      <PatternLayout charset="utf-8">
+        <Pattern>%d %p %c{1} [%t] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+        <SizeBasedTriggeringPolicy size="100 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="1000"/>
+    </RollingRandomAccessFile>
+    <RollingRandomAccessFile name="ErrFile" fileName="logs/err.log" filePattern="logs/$${date:yyyy-MM}/err-%d{yyyy-MM-dd}-%i.log.gz">
+      <PatternLayout charset="utf-8">
+        <Pattern>%d %p %c [%t] %m%n</Pattern>
+      </PatternLayout>
+      <Filters>
+        <ThresholdFilter level="warn"/>
+      </Filters>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+        <SizeBasedTriggeringPolicy size="100 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="1000"/>
+    </RollingRandomAccessFile>
+  </Appenders>
+
+  <Loggers>
+    <Logger name="com.sport.ball.application.sportanalysis" level="info" additivity="false">
+      <AppenderRef ref="SportAnalysis" />
+      <AppenderRef ref="ErrFile" />
+      <AppenderRef ref="Console" />
+    </Logger>
+    <Root level="INFO">
+      <AppenderRef ref="SportAnalysis" />
+      <AppenderRef ref="ErrFile" />
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
+</Configuration>
