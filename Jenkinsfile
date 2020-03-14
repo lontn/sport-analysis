@@ -13,7 +13,7 @@ pipeline {
         //}
         stage('Build') {
             steps {
-                //sh "mvn clean package sport-analysis:repackage"
+                sh "mvn clean install -DskipTests=true -P local,!gdev,!server"
                 sh "printenv" // 將環境變數列印到 console中
             }
         }
