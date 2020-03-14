@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'mvn-3.6.3'
+        maven 'mvn-3.6.3' //Jenkins上的maven環境變數
     }
 
     stages {
