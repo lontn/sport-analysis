@@ -14,6 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "mvn clean install -DskipTests=true -P local,!gdev,!server"
+                sh "mvn -q -DskipTests dependency:tree"
                 sh "printenv" // 將環境變數列印到 console中
             }
         }
